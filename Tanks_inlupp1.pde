@@ -37,8 +37,8 @@ void draw(){
   displayObstacle();
   displayTanks();
   displayShots();
-  
-  walkTank();
+  //team1[0].wander();
+  updateTankPosition();
   checkCollisionTanks();
   
   updateTankLogic();
@@ -88,8 +88,8 @@ void displayPlayersTeam2(float x, float y) {
   strokeWeight(1);
 }
 
-void walkTank(){
-  team1[0].walk();
+void updateTankPosition(){
+  team1[0].updatePosition();
 }
 
 void updateTankLogic() {
@@ -105,7 +105,9 @@ void shoot(int id) {
 }
 
 void loadShots() {
-    team1[0].loadShot();
+    for(int i = 0; i < team1.length; i++){
+      team1[i].loadShot();
+    }
 }
 
 void updateShotsLogic() {
