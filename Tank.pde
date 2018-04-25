@@ -49,42 +49,6 @@ class Tank{
     this.acceleration.mult(0);
   }
   
-  //FROM NATURE OF CODE Exercise_6_04_Wander 
-  //void wander() {
-  //  float wanderR = 10;         // Radius for our "wander circle"
-  //  float wanderD = 50;         // Distance for our "wander circle"
-  //  float change = 0.3;
-  //  wandertheta += random(-change,change);     // Randomly change wander theta
-
-  //  // Now we have to calculate the new position to steer towards on the wander circle
-  //  PVector circlepos = velocity.get();    // Start with velocity
-  //  circlepos.normalize();            // Normalize to get heading
-  //  circlepos.mult(wanderD);          // Multiply by distance
-  //  circlepos.add(position);               // Make it relative to boid's position
-
-  //  float h = velocity.heading2D();        // We need to know the heading to offset wandertheta
-
-  //  PVector circleOffSet = new PVector(wanderR*cos(wandertheta+h),wanderR*sin(wandertheta+h));
-  //  PVector target = PVector.add(circlepos,circleOffSet);
-  //  seek(target);
-  //}
-
-
-  //FROM NATURE OF CODE Exercise_6_04_Wander 
-  // A method that calculates and applies a steering force towards a target
-  // STEER = DESIRED MINUS VELOCITY
-  //void seek(PVector target) {
-  //  PVector desired = PVector.sub(target,position);  // A vector pointing from the position to the target
-
-  //  // Normalize desired and scale to maximum speed
-  //  desired.normalize();
-  //  desired.mult(maxspeed);
-  //  // Steering = Desired minus Velocity
-  //  PVector steer = PVector.sub(desired,velocity);
-  //  steer.limit(maxforce);  // Limit to maximum steering force
-  //  applyForce(steer);
-  //}
-  
   void checkEnvironment() {
     if ((this.position.y+radius > height) || (this.position.y-radius < 0) ||
       (this.position.x+radius > width) || (this.position.x-radius < 0)) {
@@ -196,7 +160,7 @@ class Tank{
     imageMode(CENTER);
     pushMatrix();
     translate(this.position.x, this.position.y);
-    rotate(this.heading);
+    rotate(velocity.heading());
     drawTank(0,0);
     this.turret.display();
     popMatrix();
